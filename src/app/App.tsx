@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
@@ -10,6 +10,8 @@ import TwitterIcon from '@material-ui/icons/Twitter'
 import Main from './Main'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import { useMount } from 'react-use'
+import { fetchCategories } from 'libs/services/categoryService'
 
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -85,19 +87,26 @@ const sidebar = {
 }
 
 export default function App() {
-    const classes = useStyles()
+    const [categories, setCategories] = useState([])
+
+    useMount(async () => {
+        const categories = await fetchCategories()
+
+        setCategories(categories)
+        console.log('categories', categories)
+    })
 
     return (
-        <React.Fragment>
+        <>
             <CssBaseline />
             <Container maxWidth="lg">
-                <Header title="Blog" sections={sections} />
-                {/* Main goes here */}
+                <Header title="Blog" categories={categories} />
+                <Main />
             </Container>
             <Footer
                 title="Footer"
                 description="Something here to give the footer a purpose!"
             />
-        </React.Fragment>
+        </>
     )
 }

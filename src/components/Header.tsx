@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
+import Category from 'libs/models/Category'
 
 const useStyles = makeStyles((theme) => ({
     toolbar: {
@@ -25,13 +26,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 interface Props {
-    sections: any[]
+    categories: Category[]
     title: string
 }
 
 export default function Header(props: Props) {
     const classes = useStyles()
-    const { sections, title } = props
+    const { categories, title } = props
 
     return (
         <React.Fragment>
@@ -54,15 +55,15 @@ export default function Header(props: Props) {
                 </Button>
             </Toolbar>
             <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-                {sections.map((section) => (
+                {categories.map((category: Category) => (
                     <Link
                         color="inherit"
                         noWrap
-                        key={section.title}
+                        key={category.title}
                         variant="body2"
-                        href={section.url}
+                        href={'section.url'}
                         className={classes.toolbarLink}>
-                        {section.title}
+                        {category.title}
                     </Link>
                 ))}
             </Toolbar>

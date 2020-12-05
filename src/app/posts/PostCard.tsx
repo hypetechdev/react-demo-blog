@@ -24,7 +24,7 @@ interface Props {
     post?: any
 }
 
-const PostItem = (props: Props) => {
+const PostCard = (props: Props) => {
     const classes = useStyles()
     const { post } = props
 
@@ -61,4 +61,4 @@ const PostItem = (props: Props) => {
     )
 }
 
-export default PostItem
+export default PostCard
