@@ -7,3 +7,9 @@ export const fetchCategories = async () => {
     console.log('categoriesData', categoriesData)
     return categoriesData.map((cat: any) => new Category(cat))
 }
+
+export const fetchPosts = async () => {
+    const { data: postsData } = await Axios.get('http://localhost:1337/posts')
+
+    return postsData
+}

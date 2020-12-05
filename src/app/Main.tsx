@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import PostsSection from './posts/PostsSection'
 import { Route, Switch } from 'react-router-dom'
+import PostsDetailsPage from './post-details/PostsDetailsPage'
 
 const useStyles = makeStyles((theme) => ({
     mainGrid: {
@@ -14,10 +15,12 @@ export default function Blog() {
     return (
         <main>
             <Switch>
+                <Route path="/posts/:postId">
+                    <PostsDetailsPage />
+                </Route>
                 <Route path="/">
                     <PostsSection />
                 </Route>
-                <Route path="/posts/:id">{/* <PostsSection /> */}</Route>
             </Switch>
         </main>
     )

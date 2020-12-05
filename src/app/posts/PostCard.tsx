@@ -7,6 +7,7 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Hidden from '@material-ui/core/Hidden'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles({
     card: {
@@ -26,11 +27,18 @@ interface Props {
 
 const PostCard = (props: Props) => {
     const classes = useStyles()
+
+    const history = useHistory()
+
     const { post } = props
+
+    const handlePostClick = () => {
+        history.push(`/posts/${post.id}`)
+    }
 
     return (
         <Grid item xs={12} md={6}>
-            <CardActionArea component="a" href="#">
+            <CardActionArea component="a" onClick={handlePostClick}>
                 <Card className={classes.card}>
                     <div className={classes.cardDetails}>
                         <CardContent>
